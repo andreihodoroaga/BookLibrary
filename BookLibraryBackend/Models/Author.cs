@@ -1,0 +1,10 @@
+﻿using BookLibraryBackend.Models.Base;
+
+namespace BookLibraryBackend.Models
+{
+    public class Author : BaseEntity
+    {
+        public string Name { get; set; }
+        public ICollection<AuthorBook> AuthorBooks { get; set; }
+    }
+}
