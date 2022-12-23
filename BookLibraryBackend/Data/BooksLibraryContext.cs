@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookLibraryBackend.Data
 {
-    public class BookLibraryContext : DbContext
+    public class BooksLibraryContext : DbContext
     {
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
@@ -12,7 +12,7 @@ namespace BookLibraryBackend.Data
         public DbSet<BookLibrary> BookLibraries { get; set; }
         public DbSet<LibraryLocation> Locations { get; set; }
 
-        public BookLibraryContext(DbContextOptions<BookLibraryContext> options) : base(options) { }
+        public BooksLibraryContext(DbContextOptions<BooksLibraryContext> options) : base(options) { }
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

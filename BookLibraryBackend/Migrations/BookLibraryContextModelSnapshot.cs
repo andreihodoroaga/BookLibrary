@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookLibraryBackend.Migrations
 {
-    [DbContext(typeof(BookLibraryContext))]
+    [DbContext(typeof(BooksLibraryContext))]
     partial class BookLibraryContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

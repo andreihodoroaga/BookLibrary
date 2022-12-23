@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookLibraryBackend.Migrations
 {
-    [DbContext(typeof(BookLibraryContext))]
+    [DbContext(typeof(BooksLibraryContext))]
     [Migration("20221223163544_InitDatabase")]
     partial class InitDatabase
     {
