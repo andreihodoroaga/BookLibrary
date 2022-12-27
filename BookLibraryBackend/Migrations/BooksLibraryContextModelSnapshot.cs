@@ -43,25 +43,13 @@ namespace BookLibraryBackend.Migrations
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("BookLibraryBackend.Models.AuthorBook", b =>
-                {
-                    b.Property<Guid>("AuthorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BookId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("AuthorId", "BookId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("AuthorBooks");
-                });
-
             modelBuilder.Entity("BookLibraryBackend.Models.Book", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AuthorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DateCreated")
@@ -91,6 +79,8 @@ namespace BookLibraryBackend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("Books");
                 });
@@ -178,23 +168,15 @@ namespace BookLibraryBackend.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("BookLibraryBackend.Models.AuthorBook", b =>
+            modelBuilder.Entity("BookLibraryBackend.Models.Book", b =>
                 {
                     b.HasOne("BookLibraryBackend.Models.Author", "Author")
-                        .WithMany("AuthorBooks")
+                        .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookLibraryBackend.Models.Book", "Book")
-                        .WithMany("AuthorBooks")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Author");
-
-                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("BookLibraryBackend.Models.BookLibrary", b =>
@@ -229,13 +211,11 @@ namespace BookLibraryBackend.Migrations
 
             modelBuilder.Entity("BookLibraryBackend.Models.Author", b =>
                 {
-                    b.Navigation("AuthorBooks");
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("BookLibraryBackend.Models.Book", b =>
                 {
-                    b.Navigation("AuthorBooks");
-
                     b.Navigation("BookLibraries");
                 });
 
@@ -246,8 +226,7 @@ namespace BookLibraryBackend.Migrations
 
             modelBuilder.Entity("BookLibraryBackend.Models.Location", b =>
                 {
-                    b.Navigation("Library")
-                        .IsRequired();
+                    b.Navigation("Library");
                 });
 #pragma warning restore 612, 618
         }

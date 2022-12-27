@@ -15,6 +15,7 @@ namespace BookLibraryBackend.Models
         public Genre Genre { get; set; }
         public double Rating { get; set; }
         public Author Author { get; set; }
+        public Guid AuthorId { get; set; }
         [JsonIgnore]
         public ICollection<BookLibrary>? BookLibraries { get; set; }
     }

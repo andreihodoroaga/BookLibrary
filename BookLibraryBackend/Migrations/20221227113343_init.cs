@@ -26,25 +26,6 @@ namespace BookLibraryBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Books",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PageCount = table.Column<int>(type: "int", nullable: false),
-                    Genre = table.Column<int>(type: "int", nullable: false),
-                    Rating = table.Column<double>(type: "float", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Books", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
@@ -64,25 +45,27 @@ namespace BookLibraryBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AuthorBooks",
+                name: "Books",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PageCount = table.Column<int>(type: "int", nullable: false),
+                    Genre = table.Column<int>(type: "int", nullable: false),
+                    Rating = table.Column<double>(type: "float", nullable: false),
                     AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AuthorBooks", x => new { x.AuthorId, x.BookId });
+                    table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AuthorBooks_Authors_AuthorId",
+                        name: "FK_Books_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AuthorBooks_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -133,14 +116,14 @@ namespace BookLibraryBackend.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuthorBooks_BookId",
-                table: "AuthorBooks",
-                column: "BookId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BookLibraries_LibraryId",
                 table: "BookLibraries",
                 column: "LibraryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Books_AuthorId",
+                table: "Books",
+                column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Libraries_LocationId",
@@ -153,19 +136,16 @@ namespace BookLibraryBackend.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AuthorBooks");
-
-            migrationBuilder.DropTable(
                 name: "BookLibraries");
-
-            migrationBuilder.DropTable(
-                name: "Authors");
 
             migrationBuilder.DropTable(
                 name: "Books");
 
             migrationBuilder.DropTable(
                 name: "Libraries");
+
+            migrationBuilder.DropTable(
+                name: "Authors");
 
             migrationBuilder.DropTable(
                 name: "Locations");
