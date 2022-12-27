@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookLibraryBackend.Migrations
 {
     [DbContext(typeof(BooksLibraryContext))]
-    [Migration("20221223163544_InitDatabase")]
-    partial class InitDatabase
+    [Migration("20221226172220_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,8 +86,8 @@ namespace BookLibraryBackend.Migrations
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Rating")
-                        .HasColumnType("decimal(5, 2)");
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -125,16 +125,22 @@ namespace BookLibraryBackend.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("LocationId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LocationId")
+                        .IsUnique();
+
                     b.ToTable("Libraries");
                 });
 
-            modelBuilder.Entity("BookLibraryBackend.Models.LibraryLocation", b =>
+            modelBuilder.Entity("BookLibraryBackend.Models.Location", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -154,9 +160,6 @@ namespace BookLibraryBackend.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("LibraryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -174,9 +177,6 @@ namespace BookLibraryBackend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LibraryId")
-                        .IsUnique();
 
                     b.ToTable("Locations");
                 });
@@ -219,15 +219,15 @@ namespace BookLibraryBackend.Migrations
                     b.Navigation("Library");
                 });
 
-            modelBuilder.Entity("BookLibraryBackend.Models.LibraryLocation", b =>
+            modelBuilder.Entity("BookLibraryBackend.Models.Library", b =>
                 {
-                    b.HasOne("BookLibraryBackend.Models.Library", "Library")
-                        .WithOne("Location")
-                        .HasForeignKey("BookLibraryBackend.Models.LibraryLocation", "LibraryId")
+                    b.HasOne("BookLibraryBackend.Models.Location", "Location")
+                        .WithOne("Library")
+                        .HasForeignKey("BookLibraryBackend.Models.Library", "LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Library");
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("BookLibraryBackend.Models.Author", b =>
@@ -245,8 +245,11 @@ namespace BookLibraryBackend.Migrations
             modelBuilder.Entity("BookLibraryBackend.Models.Library", b =>
                 {
                     b.Navigation("BookLibraries");
+                });
 
-                    b.Navigation("Location")
+            modelBuilder.Entity("BookLibraryBackend.Models.Location", b =>
+                {
+                    b.Navigation("Library")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

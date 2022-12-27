@@ -1,4 +1,6 @@
 using BookLibraryBackend.Data;
+using BookLibraryBackend.Helpers.Extensions;
+using BookLibraryBackend.Helpers.Seeders;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +14,12 @@ builder.Services.AddDbContext<BooksLibraryContext>(options => options.UseSqlServ
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+builder.Services.AddSeeders();
 
+var app = builder.Build();
+//SeedData(app);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -28,3 +34,19 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+//void SeedData(IHost app)
+//{
+//    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+//    using (var scope = scopedFactory.CreateScope())
+//    {
+//        var service = scope.ServiceProvider.GetService<LibrariesSeeder>();
+//        service.SeedIntialLibraries();
+        //var service2 = scope.ServiceProvider.GetService<LibraryLocationsSeeder>();
+        //service2.SeedInitialLibraryLocations();
+        //var service3 = scope.ServiceProvider.GetService<AuthorsSeeder>();
+        //service3.SeedInitialAuthors();
+        //var service4 = scope.ServiceProvider.GetService<BooksSeeder>();
+        //service4.SeedInitialBooks();
+//    }
+//}

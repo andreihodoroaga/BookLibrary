@@ -1,20 +1,27 @@
 ﻿using BookLibraryBackend.Models;
 using BookLibraryBackend.Repositories.LibraryRepository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookLibraryBackend.Services.LibraryService
 {
     public class LibraryService : ILibraryService
     {
-        public ILibraryRepository _libraryRepository;
+        private readonly ILibraryRepository _libraryRepository;
 
         public LibraryService(ILibraryRepository libraryRepository)
         {
             _libraryRepository = libraryRepository;
         }
 
-        public async Task<List<Library>> GetAllLibraries()
+        public IEnumerable<Library> GetAllAsList()
         {
-            return await _libraryRepository.GetAllAsync();
+            return _libraryRepository.GetLibraries();
+        }
+
+        public Library GetByName(string name)
+        {
+            var lib = _libraryRepository.GetByName(name);
+            return lib;
         }
     }
 }

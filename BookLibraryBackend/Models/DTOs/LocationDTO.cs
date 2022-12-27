@@ -1,8 +1,6 @@
-﻿using BookLibraryBackend.Models.Base;
-
-namespace BookLibraryBackend.Models
+﻿namespace BookLibraryBackend.Models.DTOs
 {
-    public class LibraryLocation : BaseEntity
+    public class LocationDTO
     {
         public string Street { get; set; }
         public string City { get; set; }
@@ -10,7 +8,5 @@ namespace BookLibraryBackend.Models
         public string PostalCode { get; set; }
         public string Country { get; set; }
         public string Number { get; set; }
-        public Library Library { get; set; }
-        public Guid LibraryId { get; set; }
     }
 }

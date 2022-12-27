@@ -1,9 +1,11 @@
 ﻿using BookLibraryBackend.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookLibraryBackend.Services.LibraryService
 {
     public interface ILibraryService
     {
-        Task<List<Library>> GetAllLibraries();
+        IEnumerable<Library> GetAllAsList();
+        Library GetByName(string name);
     }
 }

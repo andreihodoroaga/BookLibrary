@@ -2,6 +2,7 @@
 using BookLibraryBackend.Models.Enums;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BookLibraryBackend.Models
 {
@@ -12,9 +13,9 @@ namespace BookLibraryBackend.Models
         public DateTime PublishedDate { get; set; }
         public int PageCount { get; set; }
         public Genre Genre { get; set; }
-        [Column(TypeName = "decimal(5, 2)")]
-        public decimal Rating { get; set; }
-        public ICollection<BookLibrary> BookLibraries { get; set; }
-        public ICollection<AuthorBook> AuthorBooks { get; set; }
+        public double Rating { get; set; }
+        public Author Author { get; set; }
+        [JsonIgnore]
+        public ICollection<BookLibrary>? BookLibraries { get; set; }
     }
 }
