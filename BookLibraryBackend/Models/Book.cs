@@ -14,6 +14,7 @@ namespace BookLibraryBackend.Models
         public int PageCount { get; set; }
         public Genre Genre { get; set; }
         public double Rating { get; set; }
+        [JsonIgnore]
         public Author Author { get; set; }
         public Guid AuthorId { get; set; }
         [JsonIgnore]

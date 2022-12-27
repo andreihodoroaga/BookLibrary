@@ -1,5 +1,6 @@
 ﻿using BookLibraryBackend.Helpers.Seeders;
 using BookLibraryBackend.Repositories.AuthorRepository;
+using BookLibraryBackend.Repositories.BookRepository;
 using BookLibraryBackend.Repositories.LibraryRepository;
 using BookLibraryBackend.Repositories.LocationRepository;
 using BookLibraryBackend.Services.LibraryService;
@@ -14,6 +15,7 @@ namespace BookLibraryBackend.Helpers.Extensions
             services.AddTransient<ILibraryRepository, LibraryRepository>();
             services.AddTransient<ILocationRepository, LocationRepository>();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
 
             return services;
         }

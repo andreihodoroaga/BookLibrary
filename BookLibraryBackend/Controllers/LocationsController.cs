@@ -77,8 +77,8 @@ namespace BookLibraryBackend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLocation(Guid id)
         {
-            var todoItem = await _locationRepository.DeleteLocation(id);
-            if (todoItem == null)
+            var location = await _locationRepository.DeleteLocation(id);
+            if (location == null)
             {
                 return NotFound();
             }
