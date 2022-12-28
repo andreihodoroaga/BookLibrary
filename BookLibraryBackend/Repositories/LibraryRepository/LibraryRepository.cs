@@ -50,9 +50,19 @@ namespace BookLibraryBackend.Repositories.LibraryRepository
 
         public async Task<Library> AddLibrary(LibraryDTO libraryDTO)
         {
+            var locationDTO = libraryDTO.LocationDTO;
+            var location = new Location
+            {
+                Street = locationDTO.Street,
+                City = locationDTO.City,
+                Region = locationDTO.Region,
+                PostalCode = locationDTO.PostalCode,
+                Country = locationDTO.Country,
+                Number = locationDTO.Number
+            };
             var library = new Library {
                 Name = libraryDTO.Name, 
-                Location = libraryDTO.Location 
+                Location = location
             };
             await CreateAsync(library);
             await SaveAsync();

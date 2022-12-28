@@ -5,6 +5,6 @@ namespace BookLibraryBackend.Models.DTOs
     public class LibraryDTO
     {
         public string Name { get; set; } 
-        public Location Location { get; set; }
+        public LocationDTO LocationDTO { get; set; }
     }
 }

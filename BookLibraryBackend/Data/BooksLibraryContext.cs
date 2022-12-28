@@ -10,7 +10,7 @@ namespace BookLibraryBackend.Data
         public DbSet<Library> Libraries { get; set; }
         public DbSet<BookLibrary> BookLibraries { get; set; }
         public DbSet<Location> Locations { get; set; }
-
+        public DbSet<User> Users { get; set; }
         public BooksLibraryContext(DbContextOptions<BooksLibraryContext> options) : base(options) { }
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)

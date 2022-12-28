@@ -1,5 +1,7 @@
 using BookLibraryBackend.Data;
+using BookLibraryBackend.Helpers;
 using BookLibraryBackend.Helpers.Extensions;
+using BookLibraryBackend.Helpers.Middleware;
 using BookLibraryBackend.Helpers.Seeders;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +19,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddSeeders();
+builder.Services.AddUtils();
+
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 var app = builder.Build();
 //SeedData(app);
@@ -30,6 +35,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 
