@@ -28,10 +28,17 @@ namespace BookLibraryBackend.Controllers
             return Ok(libraries);
         }
 
-        [HttpGet("{name}")]
+        [HttpGet("byName/{name}")]
         public IActionResult GetLibraryByName(string name)
         {
             var library = _libraryService.GetByName(name);
+            return Ok(library);
+        }
+
+        [HttpGet("byId/{id}")]
+        public IActionResult GetLibraryById(Guid id)
+        {
+            var library = _libraryRepository.GetById(id);
             return Ok(library);
         }
 
@@ -40,6 +47,13 @@ namespace BookLibraryBackend.Controllers
         {
             var location = await _libraryRepository.GetLocationByLibraryId(libraryId);
             return Ok(location);
+        }
+
+        [HttpGet("books/{libraryId}")]
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooksByLibraryId(Guid libraryId)
+        {
+            var books = await _libraryRepository.GetBooksByLibraryId(libraryId);
+            return Ok(books);
         }
 
         [HttpPost("addLibrary")]
@@ -58,6 +72,55 @@ namespace BookLibraryBackend.Controllers
                     "Error creating new library record");
             }
 
+        }
+
+        [HttpPost("addBook")]
+        public async Task<ActionResult<BookLibrary>> PostBook(Guid libraryId, Guid bookId)
+        {
+            try
+            {
+                var bookLibrary = await _libraryRepository.AddBook(libraryId, bookId);
+                return Ok(bookLibrary);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error creating new book record");
+            }
+
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutLibrary(Guid id, LibraryDTO libraryDTO)
+        {
+            try
+            {
+                await _libraryRepository.UpdateLibrary(id, libraryDTO);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_libraryRepository.LibraryExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteLibrary(Guid id)
+        {
+            var library = await _libraryRepository.DeleteLibrary(id);
+            if (library == null)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
 
     }

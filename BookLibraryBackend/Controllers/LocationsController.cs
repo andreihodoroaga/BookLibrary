@@ -53,7 +53,7 @@ namespace BookLibraryBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(Guid id, LocationDTO locationDTO)
+        public async Task<IActionResult> PutLocation(Guid id, LocationDTO locationDTO)
         {
             try
             {

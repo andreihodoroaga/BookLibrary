@@ -52,7 +52,7 @@ namespace BookLibraryBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(Guid id, AuthorDTO authorDTO)
+        public async Task<IActionResult> PutAuthor(Guid id, AuthorDTO authorDTO)
         {
             try
             {
@@ -76,8 +76,8 @@ namespace BookLibraryBackend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthor(Guid id)
         {
-            var todoItem = await _authorRepository.DeleteAuthor(id);
-            if (todoItem == null)
+            var author = await _authorRepository.DeleteAuthor(id);
+            if (author == null)
             {
                 return NotFound();
             }

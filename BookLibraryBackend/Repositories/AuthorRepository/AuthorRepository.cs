@@ -36,7 +36,7 @@ namespace BookLibraryBackend.Repositories.AuthorRepository
             if (author != null)
             {
                 Delete(author);
-                await _context.SaveChangesAsync();
+                await SaveAsync();
             }
             return author;
         }
