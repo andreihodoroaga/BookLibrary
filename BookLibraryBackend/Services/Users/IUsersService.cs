@@ -5,7 +5,7 @@ namespace BookLibraryBackend.Services.Users
 {
     public interface IUsersService
     {
-        UserResponseDto Atuhenticate(UserRequestDto model);
+        UserResponseDto Authenticate(UserRequestDto model);
         Task<List<User>> GetAllUsers();
         User GetById(Guid id);
         Task Create(User newUser);

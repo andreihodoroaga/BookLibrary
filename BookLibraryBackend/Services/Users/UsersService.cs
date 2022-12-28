@@ -17,7 +17,7 @@ namespace BookLibraryBackend.Services.Users
             _jwtUtils = jwtUtils;
         }
 
-        public UserResponseDto Atuhenticate(UserRequestDto model)
+        public UserResponseDto Authenticate(UserRequestDto model)
         {
             var user = _userRepository.FindByUsername(model.UserName);
             if(user == null || !BCryptNet.Verify(model.Password, user.PasswordHash))

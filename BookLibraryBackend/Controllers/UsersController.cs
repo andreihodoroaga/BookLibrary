@@ -56,7 +56,7 @@ namespace BookLibraryBackend.Controllers.Users
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate(UserRequestDto user)
         {
-            var response = _userService.Atuhenticate(user);
+            var response = _userService.Authenticate(user);
             if(response == null)
             {
                 return BadRequest("Username or password is invalid!");
