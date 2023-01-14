@@ -20,6 +20,7 @@ builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddSeeders();
 builder.Services.AddUtils();
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
