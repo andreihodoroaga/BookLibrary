@@ -7,16 +7,20 @@ import { FooterComponent } from './core/components/footer/footer.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BooksComponent } from './pages/books/books.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { BookComponent } from './core/components/book/book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    BooksComponent
+    BooksComponent,
+    BookComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRoutingModule
+    BrowserModule, HttpClientModule, AppRoutingModule, BrowserAnimationsModule, MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
