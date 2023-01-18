@@ -1,9 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles */
 html, body {
   height: 100%;
   margin: 0;
-  // background-color: #343541;
-  // color: #fff;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 a {
@@ -15,5 +14,8 @@ a {
     color: #fff;
   }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Class based styles */
+.mt-16 {
+  margin-top: 16px;
+}

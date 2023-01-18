@@ -1,6 +1,5 @@
 .book {
   background-color: #f5f5f5;
-  padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px #999999;
   margin-bottom: 20px;
@@ -9,22 +8,19 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
-  }
 
+  }
+  
   &__author {
     font-style: italic;
     margin-bottom: 10px;
   }
-
+  
   &__details {
     font-size: 14px;
+  }
 
-    &__pages {
-      margin-right: 10px;
-    }
-
-    &__category {
-      margin-right: 10px;
-    }
+  ::ng-deep .mat-card-header-text {
+    margin: 0;
   }
 }

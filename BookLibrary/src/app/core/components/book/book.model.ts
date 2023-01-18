@@ -5,5 +5,6 @@ export interface Book {
   pageCount: number,
   genre: number,
   rating: number,
-  publishedDate: string
+  publishedDate: string,
+  authorName: string
 }

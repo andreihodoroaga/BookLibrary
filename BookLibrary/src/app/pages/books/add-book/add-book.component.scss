@@ -1,0 +1,28 @@
+.form-container {
+  height: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+
+  .add-book-form {
+    display: flex;
+    flex-direction: column;
+
+    mat-form-field {
+      width: 350px;
+
+      textarea {
+        height: 75px;
+      }
+    }
+  }
+}
+
+
+// CSS hack for misalignment of calendar icon
+::ng-deep mat-datepicker-toggle.mat-datepicker-toggle button.mat-focus-indicator.mat-icon-button.mat-button-base {
+  position: absolute;
+  top: -15px;
+  right: 0px;
+}

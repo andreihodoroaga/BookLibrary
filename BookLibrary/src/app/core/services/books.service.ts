@@ -23,7 +23,8 @@ export class BooksService {
           genre: book.genre,
           rating: book.rating,
           pageCount: book.pageCount,
-          publishedDate: book.publishedDate
+          publishedDate: book.publishedDate,
+          authorName: book.authorName
         })
       ))
     );
