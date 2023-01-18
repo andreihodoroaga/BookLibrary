@@ -12,9 +12,21 @@ namespace BookLibraryBackend.Repositories.BookRepository
     {
         public BookRepository(BooksLibraryContext context) : base(context) { }
 
-        public async Task<IEnumerable<Book>> GetBooks()
+        public async Task<IEnumerable<BookWithAuthorDTO>> GetBooks()
         {
-            return await GetAllAsync();
+            var books = from book in _context.Books
+                        join author in _context.Authors on book.AuthorId equals author.Id
+                        select new BookWithAuthorDTO
+                        {
+                            Title = book.Title,
+                            Description = book.Description,
+                            PublishedDate = book.PublishedDate,
+                            Genre = book.Genre,
+                            Rating = book.Rating,
+                            AuthorName = author.Name
+                        }; 
+
+            return await books.ToListAsync();
         }
 
         public async Task<Book> GetBookById(Guid bookId)

@@ -6,7 +6,7 @@ namespace BookLibraryBackend.Repositories.BookRepository
 {
     public interface IBookRepository : IGenericRepository<Book>
     {
-        Task<IEnumerable<Book>> GetBooks();
+        Task<IEnumerable<BookWithAuthorDTO>> GetBooks();
         Task<Book> GetBookById(Guid bookId);
         Task AddBook(BookDTO bookDTO);
         Task<Book> DeleteBook(Guid bookId);

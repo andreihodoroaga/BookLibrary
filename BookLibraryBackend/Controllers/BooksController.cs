@@ -23,6 +23,7 @@ namespace BookLibraryBackend.Controllers
             var books = await _bookRepository.GetBooks();
             return Ok(books);
         }
+        
 
         [HttpGet("byId/{id}")]
         public IActionResult GetBookById(Guid id)
