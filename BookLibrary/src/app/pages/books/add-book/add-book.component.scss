@@ -38,9 +38,13 @@
         transform: scale(0.95);
       }
     }
+    
+    .alert {
+      max-width: 300px;
+      color: #E53935;
+    }
   }
 }
-
 
 // CSS hack for misalignment of calendar icon
 ::ng-deep mat-datepicker-toggle.mat-datepicker-toggle button.mat-focus-indicator.mat-icon-button.mat-button-base {
