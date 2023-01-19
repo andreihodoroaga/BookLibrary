@@ -32,8 +32,8 @@ namespace BookLibraryBackend.Controllers
             return Ok(book);
         }
 
-        [HttpPost("addBook")]
-        public async Task<ActionResult<BookDTO>> PostLibrary(BookDTO bookDTO)
+        [HttpPost("add")]
+        public async Task<ActionResult<BookDTO>> AddBook(BookWithAuthorDTO bookDTO)
         {
             try
             {

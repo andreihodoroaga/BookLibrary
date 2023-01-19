@@ -8,7 +8,7 @@ namespace BookLibraryBackend.Repositories.BookRepository
     {
         Task<IEnumerable<BookWithAuthorDTO>> GetBooks();
         Task<Book> GetBookById(Guid bookId);
-        Task AddBook(BookDTO bookDTO);
+        Task AddBook(BookWithAuthorDTO bookDTO);
         Task<Book> DeleteBook(Guid bookId);
         Task<Book> UpdateBook(Guid bookId, BookDTO bookDTO);
         public bool BookExists(Guid id);

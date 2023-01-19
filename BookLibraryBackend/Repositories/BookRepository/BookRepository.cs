@@ -35,8 +35,10 @@ namespace BookLibraryBackend.Repositories.BookRepository
             return await FindByIdAsync(bookId);
         }
 
-        public async Task AddBook(BookDTO bookDTO)
+        public async Task AddBook(BookWithAuthorDTO bookDTO)
         {
+            var authorId = _context.Authors.Single(x => x.Name == bookDTO.AuthorName).Id;
+
             var book = new Book
             {
                 Title = bookDTO.Title,
@@ -45,8 +47,9 @@ namespace BookLibraryBackend.Repositories.BookRepository
                 PageCount = bookDTO.PageCount,
                 Genre = bookDTO.Genre,
                 Rating = bookDTO.Rating,
-                AuthorId = bookDTO.AuthorId
+                AuthorId = authorId
             };
+
             await CreateAsync(book);
             await SaveAsync();
         }
