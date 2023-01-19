@@ -21,6 +21,7 @@ namespace BookLibraryBackend.Repositories.BookRepository
                             Title = book.Title,
                             Description = book.Description,
                             PublishedDate = book.PublishedDate,
+                            PageCount = book.PageCount,
                             Genre = book.Genre,
                             Rating = book.Rating,
                             AuthorName = author.Name
