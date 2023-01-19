@@ -16,6 +16,28 @@
         height: 75px;
       }
     }
+
+    .form-button {
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #5c6bc0;
+        transform: scale(1.05);
+      }
+
+      &:active {
+        background-color: #3949ab;
+        transform: scale(0.95);
+      }
+    }
   }
 }
 

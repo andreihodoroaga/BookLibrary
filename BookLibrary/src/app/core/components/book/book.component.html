@@ -7,11 +7,11 @@
     <div class="book__details">
       <div class="book__pages">Pages: {{ book.pageCount }}</div>
       <div class="book__category">Category: {{ bookGenre }}</div>
-      <div class="book__published-date">Published: {{ book.publishedDate }}</div>
+      <div class="book__published-date">Published: {{ book.publishedDate.toString().split("T")[0] }}</div>
       <div class="book__rating">
         Rating: 
           <span [ngClass]="{ 'great': book.rating >= 4.5, 'average': book.rating > 3 }">
-            {{ book.rating}}
+            {{ book.rating }}
           </span>
       </div>
     </div>
