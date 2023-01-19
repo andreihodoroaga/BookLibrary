@@ -23,7 +23,7 @@ export class BooksService {
           genre: book.genre,
           rating: book.rating,
           pageCount: book.pageCount,
-          publishedDate: book.publishedDate,
+          publishedDate: book.publishedDate.split("T")[0],
           authorName: book.authorName
         })
       ))

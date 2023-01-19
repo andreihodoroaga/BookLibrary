@@ -1,13 +1,19 @@
 <mat-card class="book">
   <mat-card-header>
-    <mat-card-title class="book__title">{{ book?.title }}</mat-card-title>
-    <mat-card-subtitle class="book__author">{{ book?.authorName }}</mat-card-subtitle>
+    <mat-card-title class="book__title">{{ book.title }}</mat-card-title>
+    <mat-card-subtitle class="book__author">{{ book.authorName }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <div class="book__details">
-      <div class="book__pages">Pages: {{ book?.pageCount }}</div>
-      <div class="book__category">Category: {{ book?.genre }}</div>
-      <div class="book__published-date">Published: {{ book?.publishedDate }}</div>
+      <div class="book__pages">Pages: {{ book.pageCount }}</div>
+      <div class="book__category">Category: {{ bookGenre }}</div>
+      <div class="book__published-date">Published: {{ book.publishedDate }}</div>
+      <div class="book__rating">
+        Rating: 
+          <span [ngClass]="{ 'great': book.rating >= 4.5, 'average': book.rating > 3 }">
+            {{ book.rating}}
+          </span>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

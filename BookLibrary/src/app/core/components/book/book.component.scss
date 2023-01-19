@@ -20,6 +20,20 @@
     font-size: 14px;
   }
 
+  &__rating {
+    span {
+      color: #ff4081;
+    }
+
+    .average {
+      color: #ff9800;
+    }
+
+    .great {
+      color: #689f38;
+    }
+  }
+
   ::ng-deep .mat-card-header-text {
     margin: 0;
   }
