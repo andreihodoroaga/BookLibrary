@@ -1,0 +1,7 @@
+<div class="libraries-container">
+  <div class="library mb-16" *ngFor="let library of libraries" (click)="navigateToLibrary(library.id)">
+    <mat-card>
+      <mat-card-content>{{ library.name }}</mat-card-content>
+    </mat-card>
+  </div>
+</div>
