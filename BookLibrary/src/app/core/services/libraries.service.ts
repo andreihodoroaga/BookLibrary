@@ -12,7 +12,7 @@ export class LibrariesService {
   constructor(private readonly httpClient: HttpClient) { }
 
   getLibraries() {
-    return this.httpClient.get<Library[]>(this.apiUrl).pipe(map(librarys => librarys.map(
+    return this.httpClient.get<Library[]>(this.apiUrl).pipe(map(libraries => libraries.map(
       library => ({
         name: library.name,
         id: library.id
