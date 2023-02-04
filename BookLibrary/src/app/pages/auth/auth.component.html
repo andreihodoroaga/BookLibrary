@@ -1,5 +1,5 @@
-<div class="login-wrapper">
-  <form [formGroup]="loginForm" class="login-form">
+<div class="login-wrapper"  *ngIf="!isLoading">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" id="email" formControlName="email" class="form-control">
@@ -8,8 +8,14 @@
       <label for="password">Password:</label>
       <input type="password" id="password" formControlName="password" class="form-control">
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">
-      Login
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+      {{ isLoginMode ? 'Login' : 'Sign up' }}
+    </button>
+    <button type="button" (click)="onSwitchMode()">
+      Switch to {{ !isLoginMode ? 'Login' : 'Sign up' }}
     </button>
   </form>  
+</div>
+<div class="loading-wrapper" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
 </div>
