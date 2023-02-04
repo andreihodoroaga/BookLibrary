@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { Login } from 'src/app/shared/models/login.model';
 
 @Injectable({
@@ -24,5 +24,27 @@ export class AuthService {
       email: email,
       password: password
     })
+  }
+
+  login(email: string, password: string) {
+    return this.httpClient.post(this.apiUrl + '/authenticate', {
+      username: 'default',
+      firstname: 'default',
+      lastname: 'default',
+      role: 1,
+      email: email,
+      password: password
+    })
+    .pipe(
+      catchError((errorRes: any) => {
+        if (errorRes.status === 400) {
+          // Handle bad request
+          return throwError(() => new Error('Invalid email or password!'));
+        } else {
+          // Handle other errors
+          return throwError(() => new Error('An error occured!'));
+        }
+      })
+    )
   }
 }

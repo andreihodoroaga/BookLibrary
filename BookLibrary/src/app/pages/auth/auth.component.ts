@@ -51,10 +51,17 @@ export class AuthComponent implements OnInit {
     this.isLoading = true;
 
     if (this.isLoginMode) {
-      // login 
+      this.authService.login(email, password).subscribe((response) => {
+        console.log(response);
+        this.isLoading = false;
+      }, error => {
+        console.log(error)
+        this.isLoading = false;
+      })
+      
       return; 
     }
-
+    
     this.authService.signup(email, password).subscribe((response) => {
       console.log('Sign up successful!');
       this.isLoading = false;
