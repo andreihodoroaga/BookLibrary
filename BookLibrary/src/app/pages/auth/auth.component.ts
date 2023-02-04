@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss']
 })
-export class LoginComponent {
+export class AuthComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -15,4 +15,7 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(5)]]
     });
   }
+  ngOnInit(): void {
+  }
+
 }
