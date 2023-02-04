@@ -54,14 +54,15 @@ namespace BookLibraryBackend.Controllers.Users
         }
 
         [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate(UserRequestDto user)
+        public async Task<ActionResult<UserResponseDto>> Authenticate(UserRequestDto user)
         {
             var response = _userService.Authenticate(user);
+            
             if(response == null)
             {
-                return BadRequest("Username or password is invalid!");
+                return BadRequest("Email or password is invalid!");
             }
-            return Ok();
+            return Ok(response);
         }
 
         [Authorization(Role.Admin)]

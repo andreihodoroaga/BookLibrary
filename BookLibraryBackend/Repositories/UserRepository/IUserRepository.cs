@@ -5,6 +5,7 @@ namespace BookLibraryBackend.Repositories.UserRepository
 {
     public interface IUserRepository: IGenericRepository<User>
     {
-        User FindByUsername(string username);   
+        User FindByUsername(string username);
+        User FindByEmail(string email);
     }
 }

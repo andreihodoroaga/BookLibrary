@@ -9,7 +9,7 @@
         public string LastName { get; set; }
         public string Token { get; set; }
 
-        public UserResponseDto(User user , string token)
+        public UserResponseDto(User user, string token)
         {
             Id = user.Id;
             FirstName = user.FirstName;

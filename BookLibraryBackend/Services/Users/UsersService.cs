@@ -19,7 +19,8 @@ namespace BookLibraryBackend.Services.Users
 
         public UserResponseDto Authenticate(UserRequestDto model)
         {
-            var user = _userRepository.FindByUsername(model.UserName);
+            var user = _userRepository.FindByEmail(model.Email);
+
             if(user == null || !BCryptNet.Verify(model.Password, user.PasswordHash))
             {
                 return null; //or throw exception

@@ -15,5 +15,10 @@ namespace BookLibraryBackend.Repositories.UserRepository
         {
             return _table.FirstOrDefault(x => x.Username == username);
         }
+
+        public User FindByEmail(string email)
+        {
+            return _table.FirstOrDefault(x => x.Email == email);
+        }
     }
 }
