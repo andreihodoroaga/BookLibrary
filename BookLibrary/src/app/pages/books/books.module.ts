@@ -11,13 +11,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { FilterByGenrePipe } from 'src/app/shared/pipes/filter-by-genre.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AddBookComponent,
     BooksComponent,
-    BookComponent
+    BookComponent,
+    FilterByGenrePipe
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class BooksModule { }

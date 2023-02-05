@@ -11,7 +11,6 @@ import { MatCardModule } from '@angular/material/card';
 import { BooksRoutingModule } from './pages/books/books-routing.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HomeComponent } from './pages/home/home.component';
-
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent, HomeComponent],
   imports: [
