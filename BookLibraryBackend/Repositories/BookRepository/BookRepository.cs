@@ -35,6 +35,19 @@ namespace BookLibraryBackend.Repositories.BookRepository
             return await FindByIdAsync(bookId);
         }
 
+        // returns the average page count and rating for each genre.
+        public IEnumerable<BookGenreStatisticsDTO> GroupBooksByGenre()
+        {
+            return from book in _context.Books
+                   group book by book.Genre into bookGroup
+                   select new BookGenreStatisticsDTO
+                   {
+                       Genre = bookGroup.Key,
+                       AveragePageCount = bookGroup.Average(b => b.PageCount),
+                       AverageRating = bookGroup.Average(b => b.Rating)
+                   };
+        }
+
         public async Task AddBook(BookWithAuthorDTO bookDTO)
         {
             var authorId = _context.Authors.Single(x => x.Name == bookDTO.AuthorName).Id;
