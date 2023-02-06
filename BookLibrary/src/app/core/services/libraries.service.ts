@@ -19,4 +19,8 @@ export class LibrariesService {
       })
     )));
   }
+
+  getById(libraryId: string) {
+    return this.httpClient.get<Library>(this.apiUrl + `/byid/${libraryId}`);
+  }
 }

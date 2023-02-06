@@ -36,7 +36,7 @@ export class LibrariesComponent implements OnInit {
     });
   }
 
-  navigateToLibrary(libraryId: string) {
-    this.router.navigate([this.url + "/" + libraryId]);
-  }
+  // navigateToLibrary(libraryId: string) {
+  //   this.router.navigate([this.url + "/" + libraryId]);
+  // }
 }

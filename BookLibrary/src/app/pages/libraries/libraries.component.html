@@ -1,7 +1,7 @@
 <div class="libraries-container">
-  <div class="library mb-16" *ngFor="let library of libraries" (click)="navigateToLibrary(library.id)">
+  <a [routerLink]="['/libraries', library.id]" class="library mb-16" *ngFor="let library of libraries">
     <mat-card>
       <mat-card-content>{{ library.name }}</mat-card-content>
     </mat-card>
-  </div>
+  </a>
 </div>
