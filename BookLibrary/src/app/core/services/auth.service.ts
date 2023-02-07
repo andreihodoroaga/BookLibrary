@@ -9,7 +9,17 @@ import { Login } from 'src/app/shared/models/login.model';
 export class AuthService {
   apiUrl = '/api/users';
 
+  isLoggedIn = false;
+
   constructor(private readonly httpClient: HttpClient) { }
+
+  public get isLogged() {
+    return this.isLoggedIn;
+  }
+
+  setIsLoggendIn(value: boolean) {
+    this.isLoggedIn = value;
+  }
 
   authenticate(loginDetails: Login) {
     return this.httpClient.post<Login>(this.apiUrl + '/authenticate', loginDetails)

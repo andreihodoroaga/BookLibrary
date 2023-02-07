@@ -53,6 +53,7 @@ export class AuthComponent implements OnInit {
     if (this.isLoginMode) {
       this.authService.login(email, password).subscribe((response) => {
         console.log(response);
+        this.authService.setIsLoggendIn(true);
         this.isLoading = false;
       }, error => {
         console.log(error)
