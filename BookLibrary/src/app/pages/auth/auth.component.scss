@@ -35,9 +35,37 @@
   cursor: pointer;
   border: none;
   outline: none;
-
+  
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
+  
+  &.light {
+    padding: 11px 21px;
+    background-color: #7f7624;
+    color: #f6f5f5;
+    font-size: 14px;
+    opacity: 0.6;
+  }
 }
+
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  background-color: #ff7f7f;
+  padding: 16px;
+  border-radius: 4px;
+
+  .error-message {
+    margin: 0;
+    color: #fff;
+    font-size: 16px;
+  }
+}
+
+.warning-message {
+  color: #e67e22;
+}  

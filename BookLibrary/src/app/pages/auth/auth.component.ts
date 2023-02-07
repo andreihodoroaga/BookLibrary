@@ -56,18 +56,16 @@ export class AuthComponent implements OnInit {
         this.authService.setIsLoggendIn(true);
         this.isLoading = false;
       }, error => {
-        console.log(error)
+        this.error = error;
         this.isLoading = false;
       })
-      
-      return; 
+    } else {
+      this.authService.signup(email, password).subscribe((response) => {
+        console.log('Sign up successful!');
+        this.isLoading = false;
+      });
     }
     
-    this.authService.signup(email, password).subscribe((response) => {
-      console.log('Sign up successful!');
-      this.isLoading = false;
-    });
-
     this.form.reset();
   }
 
