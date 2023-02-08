@@ -1,8 +1,11 @@
 ﻿using BookLibraryBackend.Data;
+using BookLibraryBackend.Helpers.Attributes;
 using BookLibraryBackend.Models;
 using BookLibraryBackend.Models.DTOs;
+using BookLibraryBackend.Models.Enums;
 using BookLibraryBackend.Repositories.LibraryRepository;
 using BookLibraryBackend.Services.LibraryService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -112,6 +115,7 @@ namespace BookLibraryBackend.Controllers
             return NoContent();
         }
 
+        [Authorization(Role.Admin)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLibrary(Guid id)
         {
