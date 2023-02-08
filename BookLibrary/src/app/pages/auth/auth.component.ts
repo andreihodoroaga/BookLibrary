@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -28,7 +29,7 @@ export class AuthComponent implements OnInit {
    */
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]]
@@ -52,9 +53,8 @@ export class AuthComponent implements OnInit {
 
     if (this.isLoginMode) {
       this.authService.login(email, password).subscribe((response) => {
-        console.log(response);
-        this.authService.setIsLoggendIn(true);
         this.isLoading = false;
+        this.router.navigate(['/books']);
       }, error => {
         this.error = error;
         this.isLoading = false;

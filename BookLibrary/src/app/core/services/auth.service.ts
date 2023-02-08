@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { Login } from 'src/app/shared/models/login.model';
 
 @Injectable({
@@ -9,16 +9,15 @@ import { Login } from 'src/app/shared/models/login.model';
 export class AuthService {
   apiUrl = '/api/users';
 
-  isLoggedIn = false;
-
   constructor(private readonly httpClient: HttpClient) { }
 
-  public get isLogged() {
-    return this.isLoggedIn;
+  isLoggedIn() {
+    const token = localStorage.getItem('token');
+    return token != null;
   }
 
-  setIsLoggendIn(value: boolean) {
-    this.isLoggedIn = value;
+  logout() {
+    localStorage.removeItem('token');
   }
 
   authenticate(loginDetails: Login) {
@@ -46,6 +45,9 @@ export class AuthService {
       password: password
     })
     .pipe(
+      map((response: any) => {
+        localStorage.setItem('token', response.token);
+      }),
       catchError((errorRes: any) => {
         if (errorRes.status === 400) {
           // Handle bad request
