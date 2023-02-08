@@ -1,6 +1,6 @@
 <div class="libraries-container">
   <a [routerLink]="['/libraries', library.id]" class="library mb-16" *ngFor="let library of libraries">
-    <mat-card>
+    <mat-card class="mb-16">
       <mat-card-content>{{ library.name }}</mat-card-content>
     </mat-card>
   </a>

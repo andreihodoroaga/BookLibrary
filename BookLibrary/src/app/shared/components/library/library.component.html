@@ -1,2 +1,7 @@
 <p *ngIf="library">{{ library.name }}</p>
 <p *ngIf="!library">Loading library info...</p>
+
+<button (click)="deleteLibrary(library.id)" class="delete-library-btn">
+  Delete
+</button>
+ 

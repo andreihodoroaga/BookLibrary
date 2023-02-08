@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Library } from '../../models/library.model';
 import { LibrariesService } from 'src/app/core/services/libraries.service';
 
@@ -12,7 +12,7 @@ export class LibraryComponent implements OnInit {
   libraryId?: string | null;
   library!: Library;
 
-  constructor(private route: ActivatedRoute, private readonly librariesService: LibrariesService) {}
+  constructor(private route: ActivatedRoute, private readonly librariesService: LibrariesService, private router: Router) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -25,6 +25,13 @@ export class LibraryComponent implements OnInit {
   getLibraryById(libraryId: string) {
     this.librariesService.getById(libraryId).subscribe(library => {
       this.library = library;
+    })
+  }
+
+  deleteLibrary(libraryId: string) {
+    this.librariesService.deleteLibrary(libraryId).subscribe(response => {
+      console.log(response);
+      this.router.navigate(['/libraries']);
     })
   }
 }
